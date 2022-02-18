@@ -1,0 +1,38 @@
+:root {
+  --height-header: 3rem;
+  --height-footer: 2.5rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.connection {
+  margin: auto 0;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  text-decoration: none;
+  list-style-type: none;
+  outline: none;
+  width: 100%;
+}
+
+header {
+  height: var(--height-header);
+}
+
+main {
+  min-height: calc(100vh - var(--height-footer) * 3 - var(--height-header));
+}
+
+footer {
+  text-align: center;
+  height: var(--height-footer);
+}
+
+footer p {
+  margin: 0;
+}
