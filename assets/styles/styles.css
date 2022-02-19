@@ -1,6 +1,6 @@
 :root {
   --height-header: 3rem;
-  --height-footer: 2.5rem;
+  --height-footer: 3rem;
 }
 
 * {
@@ -22,10 +22,17 @@ nav ul {
 
 header {
   height: var(--height-header);
+  background-color: cyan;
+  padding: .3rem;
+}
+
+body {
+  margin: 0;
 }
 
 main {
-  min-height: calc(100vh - var(--height-footer) * 3 - var(--height-header));
+  min-height: calc(100vh - var(--height-footer) - var(--height-header));
+  padding: 1rem;
 }
 
 footer {
@@ -35,4 +42,11 @@ footer {
 
 footer p {
   margin: 0;
+}
+
+/* index files */
+
+.connection {
+  width: 50rem;
+  margin: 0 auto;
 }
