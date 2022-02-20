@@ -14,9 +14,7 @@
   <header>
     <nav>
       <ul>
-        <li>SHORTEN URL</li>
-        <!-- TODO: Add PHP -->
-        <li><a href="">Déconnexion</a></li>
+        <li>SHORTEN URL</li>   
       </ul>
     </nav>
   </header>
