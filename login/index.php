@@ -18,5 +18,8 @@
     <p>C'est votre tableau de bord.</p>
     <a href="logout.php">Déconnexion</a>
     </div>
+    <?php
+    require_once("assets/footer.php");
+    ?>
   </body>
 </html>

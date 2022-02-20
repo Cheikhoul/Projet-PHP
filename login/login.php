@@ -35,5 +35,8 @@
             <p class="errorMessage"><?php echo $message; ?></p>
         <?php } ?>
         </form>
+        <?php
+    require_once("assets/footer.php");
+    ?>
     </body>
 </html>

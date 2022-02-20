@@ -8,4 +8,5 @@
     // Redirection vers la page de connexion
     header("Location: login.php");
   }
+  require_once("assets/footer.php");
 ?>
