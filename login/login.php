@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="../assets/styles/style.css" />
     </head>
     <body>
         <?php
         require('config.php');
+        require_once("../assets/header.php");
         session_start();
 
         if (isset($_POST['pseudo'])){
