@@ -2,6 +2,7 @@
 require('../login/config.php');
 require_once('../assets/header.php'); ?>
 <h1>URL</h1>
+<a href="../index.php">Back to deshboard</a>
 <?php require_once('../function/shortenUrl.php') ?>
 <?php require_once('../function/template.dataLinker.php') ?>
 
