@@ -11,19 +11,17 @@ require_once('../assets/header.php'); ?>
 session_start();
 // Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
 if (!isset($_SESSION["pseudo"])) {
-  header("Location: login.php");
+  header("Location: ../login/login.php");
   exit();
 }
 ?>
 
 <?php
+$id = $_SESSION['id'];
 
 if ($_POST['url']) {
-  $DB = DatabaseLinker::getConnexion();
-  $id = $_SESSION['id'];
-
   try {
-    saveUrl($DB, $id);
+    saveUrl($conn, $id);
   } catch (\Throwable $th) {
     throw $th;
   }
