@@ -1,4 +1,4 @@
-<?php 
+<?php
 require('../login/config.php');
 require_once('../assets/header.php'); ?>
 <h1>URL</h1>
@@ -6,18 +6,27 @@ require_once('../assets/header.php'); ?>
 <?php require_once('../function/template.dataLinker.php') ?>
 
 <?php
-  // Initialiser la session
-  session_start();
-  // Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
-  if(!isset($_SESSION["pseudo"])){
-    header("Location: login.php");
-    exit(); 
-  }
+// Initialiser la session
+session_start();
+// Vérifiez si l'utilisateur est connecté, sinon redirigez-le vers la page de connexion
+if (!isset($_SESSION["pseudo"])) {
+  header("Location: login.php");
+  exit();
+}
 ?>
 
 <?php
 
 if ($_POST['url']) {
+  $DB = DatabaseLinker::getConnexion();
+  $id = $_SESSION['id'];
+
+  try {
+    saveUrl($DB, $id);
+  } catch (\Throwable $th) {
+    throw $th;
+  }
+
   echo "
     <form action='' method='POST'>
       <label for='url'>
@@ -40,35 +49,43 @@ if ($_POST['url']) {
 }
 ?>
 
-<table>
-  <thead>
-    <tr>
-      <th>URL généré</th>
-      <th>Url complète</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php
-    // TODO Add variable for id_utilisateur
+<?php
+// TODO Add variable for id_utilisateur
 
-    $getGeneratedURL = $conn->prepare("SELECT url_origine.url_origine, url_raccourcie.url_raccourcie FROM utilisateur 
+$getGeneratedURL = $conn->prepare("SELECT url_origine.url_origine, url_raccourcie.url_raccourcie FROM utilisateur 
     JOIN url_origine ON utilisateur.id_utilisateur = url_origine.id_utilisateur
     JOIN url_raccourcie ON url_origine.id_url_origine = url_raccourcie.id_url_origine
-    WHERE utilisateur.id_utilisateur = 1");
+    WHERE utilisateur.id_utilisateur = ?");
 
-    $getGeneratedURL->execute();
+$getGeneratedURL->bindParam(1, $id);
 
-    $result = $getGeneratedURL->fetchAll();
+$getGeneratedURL->execute();
 
-    foreach ($result as $key => $value) {
-      echo "
-      <tr>
+$result = $getGeneratedURL->fetchAll();
+
+if ($result) {
+  echo "
+        <table>
+          <thead>
+            <tr>
+              <th>URL généré</th>
+              <th>Url complète</th>
+            </tr>
+          </thead>
+        <tbody>
+        ";
+
+  foreach ($result as $key => $value) {
+    echo "
+        <tr>
         <td>" . $value['url_raccourcie'] . "</td>
         <td>" . $value['url_origine'] . "</td>
-      </tr>";
-    };
-    ?>
-  </tbody>
-</table>
+        </tr>";
+  };
+}
+
+echo "</tbody>
+</table>";
+?>
 
 <?php require_once('../assets/footer.php'); ?>
