@@ -4,7 +4,7 @@ function createUrl()
 {
   if (is_null($_SERVER["SERVER_NAME"])) throw new Exception("Error with request", 400);
 
-  return 'https://' . $_SERVER['SERVER_NAME'] . '/' . bin2hex(random_bytes(4));
+  return $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . "/Projet-PHP/pages/redirect.php?id=" . bin2hex(random_bytes(4));
 };
 
 function saveUrl($query, $idUser)
