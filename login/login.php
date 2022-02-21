@@ -10,13 +10,11 @@
 
         if (isset($_POST['pseudo'])){
         $pseudo = stripslashes($_REQUEST['pseudo']);
-        //$pseudo = mysqli_real_escape_string($conn, $pseudo);
         $password = stripslashes($_REQUEST['password']);
-        //$password = mysqli_real_escape_string($conn, $password);
-            $query = "SELECT * FROM `utilisateurs` WHERE pseudo='$pseudo' and password='".hash('sha256', $password)."'";
+        $query = "SELECT * FROM `utilisateur` WHERE pseudo='$pseudo' and password='".hash('sha256', $password)."'";
         $result = $conn->prepare($query);
-        //$result = mysqli_query($conn,$query) or die(mysql_error());
-        $rows = mysqli_num_rows($result);
+        $result-> execute();
+        $rows = $result->rowCount();
         if($rows==1){
             $_SESSION['pseudo'] = $pseudo;
             header("Location: index.php");
@@ -37,6 +35,6 @@
         <?php } ?>
         </form>
         <?php
-    require_once("assets/footer.php");
+    require_once("../assets/footer.php");
     ?>
    

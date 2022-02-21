@@ -15,11 +15,10 @@
   <body>
     <div class="sucess">
     <h1>Bienvenue <?php echo $_SESSION['pseudo']; ?>!</h1>
-    <p>C'est votre tableau de bord.</p>
+    <p><a href ="../pages/formUrl.php">C'est votre tableau de bord.</a></p>
     <a href="logout.php">Déconnexion</a>
     </div>
     <?php
-    require_once("assets/footer.php");
+    require_once("../assets/footer.php");
     ?>
-  </body>
-</html>
+  
