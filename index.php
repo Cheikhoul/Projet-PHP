@@ -10,16 +10,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <link rel="stylesheet" href="assets/styles/style.css" />
+    <link rel="stylesheet" href="assets/style.css" />
   </head>
   <body>
     <?php
-    require_once("assets/header.php");
+      require_once("assets/header.php");
     ?>
     <div class="sucess">
-    <h1>Bienvenue <?php echo $_SESSION['pseudo']; ?>!</h1>
-    <p><a href ="pages/formUrl.php">C'est votre tableau de bord.</a></p>
-    <a href="login/logout.php">Déconnexion</a>
+      <h1>Bienvenue <?php echo $_SESSION['pseudo']; ?>!</h1>
+      <p>
+        <a href ="pages/formUrl.php">C'est votre tableau de bord.</a>
+      </p>
+      <a href="login/logout.php">Déconnexion</a>
     </div>
     <?php
     require_once("assets/footer.php");
