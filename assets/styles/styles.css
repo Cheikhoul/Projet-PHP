@@ -29,6 +29,8 @@ header {
 body {
   background: #1c242d;
   margin: 0;
+  display: grid;
+  grid-template-rows: 1fr auto;
 }
 
 main {
@@ -38,11 +40,15 @@ main {
 
 footer {
   text-align: center;
-  height: var(--height-footer);
+  grid-row-start: 2;
+  grid-row-end: 3;
 }
 
 footer p {
-  margin: 0;
+  height: 50px;
+  grid-row-start: 2;
+  grid-row-end: 3;
+
 }
 
 .box {
