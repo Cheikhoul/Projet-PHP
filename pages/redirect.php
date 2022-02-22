@@ -11,7 +11,6 @@ ON url_raccourcie.id_url_origine=url_origine.id_url_origine
 WHERE url_raccourcie = :urlId");
 
 $testUrl = $_SERVER['REQUEST_SCHEME'] . '://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
-// $testUrl = 'http://localhost:8888/Projet-PHP/pages/redirect.php?id=18c1c606';
 
 $getUrlOrigin->bindParam("urlId", $testUrl);
 $getUrlOrigin->execute();

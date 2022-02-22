@@ -1,8 +1,9 @@
 <?php
 require('../login/config.php');
 require_once('../assets/header.php'); ?>
-<h1>URL</h1>
-<a href="../index.php">Back to dashboard</a>
+<h1>MES URL raccourcies</h1>
+<a href="../index.php">Back to DashBoard</a>
+<br>
 <?php require_once('../function/shortenUrl.php') ?>
 <?php require_once('../function/template.dataLinker.php') ?>
 
@@ -19,30 +20,32 @@ if (!isset($_SESSION["pseudo"])) {
 <?php
 $id = $_SESSION['id'];
 
-if ($_POST['url']) {
-  try {
-    saveUrl($conn, $id);
-  } catch (\Throwable $th) {
-    throw $th;
-  }
+if($_POST){
+  if ($_POST['url']) {
+    try {
+      saveUrl($conn, $id);
+    } catch (\Throwable $th) {
+      throw $th;
+    }
 
-  echo "
-    <form action='' method='POST'>
-      <label for='url'>
-        <span>Url:</span>
-        <input type='url' name='url'>
-      </label>
-      <button type='submit'>Générer mon URL</button>
-    </form>
-  ";
+    echo "
+      <form class='box' action='' method='POST'>
+        <label for='url'>
+          <span>Url:</span>
+          <input type='url' class='box-input' name='url' placeholder='Tapez une URL à raccourcir'>
+        </label>
+        <button type='submit' class='box-button'>Générer mon URL</button>
+      </form>
+    ";
+  }
 } else {
   echo "
-    <form action='' method='POST'>
+    <form class='box' action='' method='POST'>
       <label for='url'>
-        <span>Url:</span>
-        <input type='url' name='url'>
+        <span>URL:</span>
+        <input type='url' class='box-input' name='url' placeholder='Tapez une URL à raccourcir'>
       </label>
-      <button type='submit'>Générer mon URL</button>
+      <button type='submit' class='box-button'>Générer mon URL</button>
     </form>
   ";
 }
@@ -67,8 +70,8 @@ if ($result) {
         <table>
           <thead>
             <tr>
-              <th>URL généré</th>
-              <th>Url complète</th>
+              <th><span title='Copiez une URL générée et collez la sur votre navigateur pour être redirigé vers votre adresse cible correspondante'>URL générée</span></th>
+              <th><span title='URL cible'>URL complète</th>
             </tr>
           </thead>
         <tbody>
@@ -77,8 +80,8 @@ if ($result) {
   foreach ($result as $key => $value) {
     echo "
         <tr>
-        <td>" . $value['url_raccourcie'] . "</td>
-        <td>" . $value['url_origine'] . "</td>
+        <td>" . "<a href='$value[url_raccourcie]' target='_blank'>" . $value['url_raccourcie'] . "</a>" . "</td>
+          <td>" . $value['url_origine'] . "</td>
         </tr>";
   };
 }
