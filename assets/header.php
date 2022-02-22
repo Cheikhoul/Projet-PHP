@@ -14,7 +14,7 @@
   <header>
     <nav>
       <ul>
-        <li>SHORTEN URL</li>   
+        <li><a href='../index.php'>SHORTEN URL</a></li>   
       </ul>
     </nav>
   </header>
